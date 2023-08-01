@@ -1,27 +1,21 @@
-const Drawer = () => {
+const Drawer = ({onClose, items = []}) => {
     return (  
-        <div style={{display: 'none'}} className="overlay">
+        <div className="overlay">
+            {/* style={{display: 'none'}} */}
             <div className="drawer">
-                <h2 className="d-flex justify-between mb-30">Корзина<img className="removeBtn cu-p" src="/img/close.svg" /></h2>
+                <h2 className="d-flex justify-between mb-30">Корзина<img onClick={onClose} className="removeBtn cu-p" src="/img/close.svg" /></h2>
 
                 <div className="items">
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{backgroundImage: 'url(/img/E-1107-01-C.jpg)'}} className="cartItemImg"></div>
-                        <div className="mr-20 flex">
-                        <p className="mb-5">Стальные серьги Nouvelle mode E-1107-01-C с фианитами</p>
-                        <b>3 600 руб.</b>
+                    {items.map((obj) => (
+                        <div className="cartItem d-flex align-center mb-20">
+                            <div style={{backgroundImage: `url(${obj.imageUrl})`}} className="cartItemImg"></div>
+                            <div className="mr-20 flex">
+                            <p className="mb-5">{obj.title}</p>
+                            <b>{obj.price}</b>
+                            </div>
+                            <img className="removeBtn" width={32} height={32} src="/img/close.svg" alt="close"/>
                         </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/close.svg" alt="close"/>
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{backgroundImage: 'url(/img/E-1107-01-C.jpg)'}} className="cartItemImg"></div>
-                        <div className="mr-20 flex">
-                        <p className="mb-5">Стальные серьги Nouvelle mode E-1107-01-C с фианитами</p>
-                        <b>3 600 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/close.svg" alt="close"/>
-                    </div>
+                    ))}
                 </div>
 
                 <div className="cartTotalBlock">
